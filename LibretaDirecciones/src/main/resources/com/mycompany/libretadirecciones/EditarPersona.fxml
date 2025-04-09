@@ -44,7 +44,7 @@
             <TextField fx:id="fechaDeNacimientoTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
-      <Button defaultButton="true" layoutX="412.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
+      <Button defaultButton="true" layoutX="358.0" layoutY="345.0" mnemonicParsing="false" onAction="#guardar" text="Guardar" />
       <Button cancelButton="true" layoutX="479.0" layoutY="345.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
    </children>
 </AnchorPane>
