@@ -18,9 +18,13 @@ public class VistaPrincipalController implements Initializable {
     /**
      * Initializes the controller class.
      */
+    private LibretaDirecciones libretaDirecciones;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }    
-    
+    public void setLibretaDirecciones(LibretaDirecciones libretaDirecciones) 
+    {
+        this.libretaDirecciones = libretaDirecciones;
+    }
 }

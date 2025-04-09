@@ -1,11 +1,13 @@
 package com.mycompany.libretadirecciones;
 
+import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -44,23 +46,37 @@ public class LibretaDirecciones extends Application {
     }
 
    @Override
-    public void start(Stage escenarioPrincipal) {
-         try {
+
+    public void start(Stage escenarioPrincipal) throws IOException {
+
+
             FXMLLoader vista = new FXMLLoader(LibretaDirecciones.class.getResource("VistaPrincipal.fxml"));
             
             contenedorPrincipal = vista.load();
             
             escenaPrincipal = new Scene(contenedorPrincipal);
-            
+
             escenarioPrincipal.setScene(escenaPrincipal);
+
             escenarioPrincipal.setTitle("Libreta de direcciones");
-            escenarioPrincipal.show();
+            
+            //Establezco el icono de aplicación
+
+            escenarioPrincipal.getIcons().add(new Image("file:./src/main/resources/com/mycompany/libretadirecciones/icono.png")); //Ojo con la ruta!!
         
+            
+            //Doy acceso al controlador VistaPersonaCOntroller a LibretaDirecciones
+
+            VistaPrincipalController controller = vista.getController();
+
+            controller.setLibretaDirecciones(this);
+
+
+            escenarioPrincipal.show();
+
             muestraVistaPersona();
 
-         } catch (Exception ex) {
-              System.out.println(ex.getMessage());
-         }
+
     }
 
     public void muestraVistaPersona() 
