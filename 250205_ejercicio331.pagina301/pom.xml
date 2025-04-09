@@ -11,4 +11,5 @@
         <maven.compiler.target>22</maven.compiler.target>
         <exec.mainClass>com.mycompany._ejercicio331.pagina301.App</exec.mainClass>
     </properties>
+    <name>250205_ejercicio331.pagina301_Comparator</name>
 </project>

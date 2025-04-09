@@ -11,4 +11,5 @@
         <maven.compiler.target>22</maven.compiler.target>
         <exec.mainClass>com.mycompany._ejercicio.pag377.App</exec.mainClass>
     </properties>
+    <name>250210_EjercicioArrayList.12.8.pag377</name>
 </project>
