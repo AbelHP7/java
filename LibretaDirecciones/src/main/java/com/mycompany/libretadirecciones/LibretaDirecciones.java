@@ -1,5 +1,9 @@
 package com.mycompany.libretadirecciones;
 
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
+import java.io.File;
 import java.io.IOException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -7,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -133,8 +138,105 @@ public class LibretaDirecciones extends Application {
 
         return resul;
     }
-     
+     //Cargo personas de un fichero
+
+    public void cargaPersonas(File archivo){
+
+
+        try {
+
+            //Contexto
+
+            JAXBContext context = JAXBContext.newInstance(Empaquetador.class);
+
+            Unmarshaller um = context.createUnmarshaller();
+
+
+            //Leo XML del archivo y hago unmarshall
+
+            Empaquetador empaquetador = (Empaquetador) um.unmarshal(archivo);
+
+
+            //Borro los anteriores
+
+            datosPersona.clear();
+
+            datosPersona.addAll(empaquetador.getPersonas());
+
+
+
+        } catch (Exception e) {
+
+            //Muestro alerta
+
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+
+            alerta.setTitle("Error");
+
+            alerta.setHeaderText("No se pueden cargar datos de la ruta "+ archivo.getPath());
+
+            alerta.setContentText(e.toString());
+
+            alerta.showAndWait();
+
+
+        }
+
+
+    }
+
+
+    //Guardo personas en un fichero
+
+    public void guardaPersonas(File archivo) {
+
+
+        try {
+
+            //Contexto
+
+            JAXBContext context = JAXBContext.newInstance(Empaquetador.class);
+
+            Marshaller m = context.createMarshaller();
+
+            m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+
+            //Empaqueto los datos de las personas
+
+            Empaquetador empaquetador = new Empaquetador();
+
+            empaquetador.setPersonas(datosPersona);
+
+
+            //Marshall y guardo XML a archivo
+
+            m.marshal(empaquetador, archivo);
+
+
+
+        } catch (Exception e) { // catches ANY exception
+
+            //Muestro alerta
+
+            Alert alerta = new Alert(Alert.AlertType.ERROR);
+
+            alerta.setTitle("Error");
+
+            alerta.setHeaderText("No se puede guardar en el archivo "+ archivo.getPath());
+
+            alerta.setContentText(e.toString());
+
+            alerta.showAndWait();
+
+        }
+
+    }
     public static void main(String[] args) {
         launch();
+    }
+
+    Object getPrimaryStage() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

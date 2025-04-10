@@ -4,47 +4,55 @@
  */
 package com.mycompany.projectojunit;
 
-import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
-/**
- *
- * @author usuario
- */
-public class CalculadoraTest {
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CalculadoraTest 
+{
+
     @Test
-    public void testSuma() {
-        assertEquals(8, Calculadora.operar(5, 3, 1));
+    public void testSuma()
+    {
+        double resultado = Calculadora.operar(5.0, 3.0, 1);
+        assertEquals(8.0, resultado, 0.0001);
     }
 
     @Test
-    public void testResta() {
-        assertEquals(2, Calculadora.operar(5, 3, 2));
+    public void testResta() 
+    {
+        double resultado = Calculadora.operar(5.0, 3.0, 2);
+        assertEquals(2.0, resultado, 0.0001);
     }
 
     @Test
-    public void testMultiplicacion() {
-        assertEquals(15, Calculadora.operar(5, 3, 3));
+    public void testMultiplicacion()
+    {
+        double resultado = Calculadora.operar(5.0, 3.0, 3);
+        assertEquals(15.0, resultado, 0.0001);
     }
 
     @Test
-    public void testDivision() {
-        assertEquals(2, Calculadora.operar(6, 3, 4));
+    public void testDivision()
+    {
+        double resultado = Calculadora.operar(6.0, 3.0, 4);
+        assertEquals(2.0, resultado, 0.0001);
     }
 
     @Test
-    public void testDivisionPorCero() {
-        Exception e = assertThrows(ArithmeticException.class, () -> {
-            Calculadora.operar(5, 0, 4);
+    public void testDivisionPorCero() 
+    {
+        Exception exception = assertThrows(ArithmeticException.class, () -> {
+            Calculadora.operar(6.0, 0.0, 4);
         });
-        assertEquals("No se puede dividir entre cero.", e.getMessage());
+        assertEquals("No se puede dividir entre cero.", exception.getMessage());
     }
 
     @Test
-    public void testOpcionInvalida() {
-        Exception e = assertThrows(IllegalArgumentException.class, () -> {
-            Calculadora.operar(5, 3, 7);
+    public void testOpcionInvalida() 
+    {
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            Calculadora.operar(6.0, 3.0, 5);
         });
-        assertEquals("Opción no válida.", e.getMessage());
+        assertEquals("Opción no válida.", exception.getMessage());
     }
 }
-
