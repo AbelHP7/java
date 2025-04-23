@@ -68,7 +68,7 @@ public class VistaPrincipalController {
 
         //Muestro el diálogo de guardar
 
-        File archivo = fileChooser.showOpenDialog(libretaDirecciones.getPrimaryStage().getWindow());
+        File archivo = fileChooser.showOpenDialog(libretaDirecciones.getPrimaryScene().getWindow());
 
 
         if (archivo != null) {
@@ -104,7 +104,7 @@ public class VistaPrincipalController {
 
         //Muestro el diálogo de guardar
 
-        File archivo = fileChooser.showSaveDialog(libretaDirecciones.getPrimaryStage().getWindow());
+        File archivo = fileChooser.showSaveDialog(libretaDirecciones.getPrimaryScene().getWindow());
 
 
         if (archivo != null) {
@@ -156,10 +156,17 @@ public class VistaPrincipalController {
         System.exit(0);
 
     }
+    
+    //Gráfico
+    @FXML
+    private void grafico() {
+      libretaDirecciones.crearGrafico();
+    }
     //PDF
     @FXML
     private void pdf() throws IOException {
       libretaDirecciones.crearPDF();
     }
+
 
 }
